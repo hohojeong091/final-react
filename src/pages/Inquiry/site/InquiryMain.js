@@ -18,7 +18,7 @@ function InquiryMain() {
     const navigate = useNavigate();
 
     const onClickInquiryRegisterHandler = () => {
-        navigate("/members/mypage/inquiry/regist");
+        navigate("/inquiry/member/regist");
     }
 
 
