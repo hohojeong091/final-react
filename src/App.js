@@ -70,8 +70,7 @@ function App() {
                                 <Route path="profile" element={<MemberProfile/>}/>
                                 <Route path="report" element={<ReportPage/>}/>
 
-
-                                <Route path="inquiry" >
+                                <Route path="inquiry">
                                     <Route index element={<InquiryMain/>}/>
                                     <Route path="regist" element={<InquiryRegist/>}/>
                                     <Route path="list" element={<InquiryUpdate/>}/>
