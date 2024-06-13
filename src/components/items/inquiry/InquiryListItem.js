@@ -8,9 +8,6 @@ function InquiryListItem({inquiry: {inquiryCode, inquiryWriteDate, inquiryTitle,
 
     const navigate = useNavigate();
 
-    const onClickViewDetailHandler = () => {
-    navigate(`/inquiry/detail/${inquiryCode}`)
-    }
 
     return (
 
@@ -43,7 +40,7 @@ function InquiryListItem({inquiry: {inquiryCode, inquiryWriteDate, inquiryTitle,
                     </tbody>
 
                 </Table>
-                
+
         </div>
 
     );

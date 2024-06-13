@@ -57,10 +57,8 @@ function InquiryMain({data}) {
                     ))}
 
 
-                    {/* 등록된 문의가 없을 시, "등록된 문의가 없습니다."라는 문구 보여주기*/}
 
-
-                    <div className="inquiryList">
+                    <div>
 
                     { inquiry &&
                         <>
