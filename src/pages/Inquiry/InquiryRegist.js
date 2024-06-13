@@ -1,8 +1,8 @@
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
-import {callInquiryListAPI, callMemberInquiryRegistAPI} from "../../../apis/InquiryAPI";
-import InquiryForm from "../../../components/form/InquiryForm";
+import {callInquiryListAPI, callMemberInquiryRegistAPI} from "../../apis/InquiryAPI";
+import InquiryForm from "../../components/form/InquiryForm";
 import {Col, Row} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import InquiryMain from "./InquiryMain";

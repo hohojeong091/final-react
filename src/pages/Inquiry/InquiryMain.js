@@ -3,12 +3,12 @@ import React, {useEffect, useState} from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import {Col, Row} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {callInquiryListAPI} from "../../../apis/InquiryAPI";
-import PagingBar from "../../../components/common/PagingBar";
-import InquiryList from "../../../components/list/InquiryList";
+import {callInquiryListAPI} from "../../apis/InquiryAPI";
+import PagingBar from "../../components/common/PagingBar";
+import InquiryList from "../../components/list/InquiryList";
 import Button from "react-bootstrap/Button";
 import {useNavigate} from "react-router-dom";
-import inquiryList from "../../../components/list/InquiryList";
+import inquiryList from "../../components/list/InquiryList";
 
 
 

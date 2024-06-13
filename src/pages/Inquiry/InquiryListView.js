@@ -1,10 +1,10 @@
-import InquiryList from "../../../components/list/InquiryList";
+import InquiryList from "../../components/list/InquiryList";
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import Button from "react-bootstrap/Button";
-import {callInquiryListAPI} from "../../../apis/InquiryAPI";
-import PagingBar from "../../../components/common/PagingBar";
+import {callInquiryListAPI} from "../../apis/InquiryAPI";
+import PagingBar from "../../components/common/PagingBar";
 
 
 
