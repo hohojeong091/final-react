@@ -19,8 +19,11 @@ export const callInquiryListAPI = ({currentPage}) => {
 }
 
 export const callMemberInquiryRegistAPI = ({inquiryRegistRequest}) => {
+    console.log("실행");
 
     return async (dispatch, getState) => {
+
+      
         const result = await authRequest.post(`/inquiry/members/regist`, inquiryRegistRequest);
 
 

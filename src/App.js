@@ -22,7 +22,8 @@ import ProductEdit from "./pages/seller/ProductEdit";
 import LoginModal from "./components/items/LoginModal";
 import MemberProfile from "./pages/member/MemberProfile";
 import AdminMemberView from "./pages/admin/AdminMemberView";
-import StoreProfile from "./pages/seller/StoreProfile";
+import InquiryRegist from "./pages/Inquiry/site/InquiryRegist";
+import StoreProfile from "./components/items/StoreProfile";
 import ProtectedRoute from "./components/route/ProtectedRoute";
 import AdminCategory from "./pages/admin/AdminCategory";
 import AdminReport from "./pages/admin/AdminReport";
@@ -30,6 +31,7 @@ import Order from "./pages/order/Order";
 import {CheckoutPage} from "./pages/payment/CheckoutPage";
 import {FailPage} from "./pages/payment/FailPage";
 import {SuccessPage} from "./pages/payment/SuccessPage";
+import InquiryUpdate from "./pages/Inquiry/site/InquiryUpdate";
 import ReportPage from "./pages/admin/ReportPage";
 import ProductDetail from "./pages/product/ProductDetail";
 import Notices from "./pages/admin/Notices";
@@ -97,13 +99,16 @@ function App() {
                                 <Route path="orders/:orderCode" element={<OrderDetails/>}/>
                                 <Route path="report" element={<ReportPage/>}/>
 
+
                                 <Route path="apply">
                                     <Route index element={<ApplySeller/>}/>
                                     <Route path="regist" element={<ApplyRegist/>}/>
                                     <Route path="detail/:sellerCode" element={<ApplyDetail/>}/>
                                 </Route>
 
-                                <Route path="inquiry" >
+                             
+
+                                <Route path="inquiry">
                                     <Route index element={<InquiryMain/>}/>
                                     <Route path="regist" element={<InquiryRegist/>}/>
                                     {/*<Route path="view" element={<InquiryListView/>}/>*/}
