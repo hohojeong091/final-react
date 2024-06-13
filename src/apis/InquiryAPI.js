@@ -41,7 +41,7 @@ export const callInquiryDetailViewAPI = ({inquiryDetailView}) => {
         if(result?.status === 200) {
 
         } else {
-            toast.warning("문의 상세내역을 불러오지 못했습니다")
+            // toast.warning("문의 상세내역을 불러오지 못했습니다")
         }
     }
 }
