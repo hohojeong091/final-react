@@ -1,12 +1,22 @@
 import {useNavigate} from "react-router-dom";
 import {Table} from "react-bootstrap";
-import React from "react";
+import React, {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {callInquiryDetailViewAPI} from "../../../apis/InquiryAPI";
+import inquiryDetailView from "../../../pages/Inquiry/InquiryDetailView";
 
 
 function InquiryListItem({inquiry: {inquiryCode, inquiryWriteDate, inquiryTitle, inquiryDetail, inquiryReplyStatus}}) {
 
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
+     useEffect =(() => {
+
+         dispatch( callInquiryDetailViewAPI ({inquiryDetailView}));
+     });
 
 
     return (
