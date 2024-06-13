@@ -9,8 +9,10 @@ function MemberProfile() {
     const {profileInfo} = useSelector(state => state.memberReducer);
 
     useEffect(() => {
-        dispatch(callProfileAPI());
-    }, []);
+        if (!profileInfo) {
+            dispatch(callProfileAPI());
+        }
+    }, [dispatch, profileInfo]);
 
     return(
         <>

@@ -10,9 +10,12 @@ function UserPageLayout() {
     const dispatch = useDispatch();
     const {profileInfo} = useSelector(state => state.memberReducer);
 
+
     useEffect(() => {
-        dispatch(callProfileAPI());
-    }, []);
+        if (!profileInfo) {
+            dispatch(callProfileAPI());
+        }
+    }, [dispatch, profileInfo]);
 
     return (
         <>

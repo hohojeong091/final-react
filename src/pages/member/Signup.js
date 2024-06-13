@@ -20,7 +20,7 @@ function Signup() {
 
     return (
         <>
-            <ToastContainer hideProgressBar={true} position="top-center"/>
+            {/*<ToastContainer hideProgressBar={true} position="top-center"/>*/}
             <SignupForm/>
         </>
     );

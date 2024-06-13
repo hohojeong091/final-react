@@ -33,15 +33,14 @@ function InquiryForm ({form, setForm}) {
                 <Form className="p-5">
 
 
-                    {/*<Form.Group as={Row} className="mb-3" controlId="formMemberId">*/}
+                    {/*<Form.Group as={Row} className="mb-3" controlId="formInquiryCode">*/}
                     {/*    <Form.Label column sm="2">*/}
-                    {/*        아이디*/}
+                    {/*        문의 번호*/}
                     {/*    </Form.Label>*/}
                     {/*    <Col sm="10">*/}
                     {/*        <Form.Control*/}
                     {/*            type="text"*/}
-                    {/*            placeholder="아이디를 입력해 주세요."*/}
-                    {/*            name="memberId"*/}
+                    {/*            name="inquiryCode"*/}
                     {/*            value={form.memberId}*/}
                     {/*            onChange={onChangeHandler}*/}
                     {/*        />*/}
@@ -50,19 +49,19 @@ function InquiryForm ({form, setForm}) {
 
                     {/*</Form.Group>*/}
 
-                    {/*<Form.Group as={Row} className="mb-3" controlId="formEmail">*/}
+                    {/*<Form.Group as={Row} className="mb-3" controlId="formemberCode">*/}
                     {/*    <Form.Label column sm="2">*/}
-                    {/*        이메일*/}
+                    {/*        회원번호*/}
                     {/*    </Form.Label>*/}
                     {/*    <Col sm="10">*/}
                     {/*        <InputGroup className="mb-3">*/}
                     {/*            <Form.Control*/}
                     {/*                type="email"*/}
-                    {/*                placeholder="이메일을 입력해 주세요."*/}
-                    {/*                name="memberEmail"*/}
+                    {/*                name="memberCode"*/}
                     {/*                value={form.memberEmail}*/}
                     {/*                onChange={onChangeHandler}*/}
                     {/*            />*/}
+
                     {/*        </InputGroup>*/}
                     {/*    </Col>*/}
                     {/*</Form.Group>*/}

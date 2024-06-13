@@ -4,22 +4,25 @@ import React from "react";
 
 import { FaRegHeart } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa6";
+import {useNavigate} from "react-router-dom";
 
 
-function ProductItem() {
+function ProductItem({product}) {
+
+    const navigate = useNavigate();
 
     return(
-        <>
-            <Card style={{width: '14rem', cursor: 'pointer'}}>
+        <div>
+            <Card style={{width: '14rem', cursor: 'pointer'}} onClick={()=>navigate(`/product/${product.productCode}`)}>
                 <Card.Img variant="top" src="/p1.png"/>
                 <Card.Body>
-                    <Card.Title>상품명
+                    <Card.Title>{product.productName}
                     </Card.Title>
                     <Card.Text className="mb-0">
-                        판매자명
+                        {product.storeName}
                     </Card.Text>
                     <Card.Text className="fs-6 fw-lighter" style={{letterSpacing: '0.1em'}}>
-                        10000원
+                        {product.price}
                     </Card.Text>
 
                     <div className="card-btn-wrapper">
@@ -34,7 +37,7 @@ function ProductItem() {
                 </Card.Body>
             </Card>
 
-        </>
+        </div>
 
     );
 }

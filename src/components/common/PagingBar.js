@@ -1,22 +1,22 @@
 import React from 'react';
 import Pagination from 'react-bootstrap/Pagination';
-// import './PagingBar.css'
 
-function PagingBar() {
-
+function PagingBar({ currentPage, totalPages, onPageChange }) {
+    // 페이지 번호 목록 배열 생성
+    const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
     return (
         <div className="pagination-container">
             <Pagination>
-                <Pagination.First/>
-                <Pagination.Prev/>
-                <Pagination.Item>{1}</Pagination.Item>
-                <Pagination.Item>{2}</Pagination.Item>
-                <Pagination.Item>{3}</Pagination.Item>
-                <Pagination.Item>{4}</Pagination.Item>
-                <Pagination.Item>{5}</Pagination.Item>
-                <Pagination.Next/>
-                <Pagination.Last/>
+                <Pagination.First onClick={() => onPageChange(1)} disabled={currentPage === 1} />
+                <Pagination.Prev onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} />
+                {pageNumbers.map(page => (
+                    <Pagination.Item key={page} active={page === currentPage} onClick={() => onPageChange(page)}>
+                        {page}
+                    </Pagination.Item>
+                ))}
+                <Pagination.Next onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages} />
+                <Pagination.Last onClick={() => onPageChange(totalPages)} disabled={currentPage === totalPages} />
             </Pagination>
         </div>
     );

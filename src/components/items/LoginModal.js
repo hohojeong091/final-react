@@ -26,7 +26,7 @@ function LoginModal({show, handleClose}) {
 
     return (
         <Modal show={show} onHide={handleClose} className="mt-5">
-        <ToastContainer hideProgressBar={true} position="top-center"/>
+        {/*<ToastContainer hideProgressBar={true} position="top-center"/>*/}
             <Modal.Header closeButton className="border-0"/>
             <Modal.Body className="px-5">
                 <h3>로그인</h3>

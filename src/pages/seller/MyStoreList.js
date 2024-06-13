@@ -9,14 +9,15 @@ import {Col, Row} from "react-bootstrap";
 function MyStoreList() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { sellerInfo } = useSelector(state => state.sellerReducer);
+    const {
+        sellerInfo } = useSelector(state => state.sellerReducer);
 
     useEffect(() => {
         dispatch(callStoreListAPI());
     }, []);
 
-    const handleClick = (storeCode) => {
-        navigate(`/seller/mystore/${storeCode}`);
+    const handleClick = (sellerCode) => {
+        navigate(`/seller/mystore/${sellerCode}`);
     };
 
     return (
@@ -27,8 +28,8 @@ function MyStoreList() {
                     {sellerInfo && sellerInfo.map(store => (
                         <Col
                             className="mb-3 col-lg-6"
-                            key={store.storeCode}
-                            onClick={() => handleClick(store.storeCode)}
+                            key={store.sellerCode}
+                            onClick={() => handleClick(store.sellerCode)}
                         >
                             <StoreProfileItem store={store}/>
                         </Col>

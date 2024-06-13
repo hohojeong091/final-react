@@ -3,9 +3,25 @@ import ArrangeDrop from "../../components/items/ArrangeDrop";
 import ProductItem from "../../components/items/ProductItem";
 import PagingBar from "../../components/common/PagingBar";
 import StoreBanner from "../../components/items/StoreBanner";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {request} from "../../apis/api";
+import {callProductListAPI} from "../../apis/ProductAPI";
+import productReducer from "../../modules/ProductModules";
 
 
 function ProductMain() {
+
+    const dispatch = useDispatch();
+    const [currentPage, setCurrentPage] = useState(1);
+    const {products} = useSelector(state => state.productReducer);
+
+
+    useEffect(() => {
+        dispatch(callProductListAPI({currentPage}));
+    }, [currentPage, dispatch]);
+
     return(
         <div className="store-main-page">
 
@@ -15,68 +31,31 @@ function ProductMain() {
 
             <div className="product-list-top-wrapper">
                 <div className="amount-num-wrapper">
-                    <p>총 120 개</p>
+                    <p>총 {products && products.data ? products.data.length : 0} 개</p>
                 </div>
                 <div className="arrange-wrapper">
                     <ArrangeDrop/>
                 </div>
             </div>
 
-            <div className="product-list-wrapper" style={{marginTop: '15px'}}>
-                <Row style={{marginTop: '5px', marginBottom: '10px'}}>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                </Row>
-                <Row style={{marginTop: '5px', marginBottom: '10px'}}>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                </Row>
-                <Row style={{marginTop: '5px', marginBottom: '10px'}}>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                    <Col>
-                        <ProductItem/>
-                    </Col>
-                </Row>
-            </div>
+            {
+                products &&
+                <>
+                    <div className="product-list-wrapper" style={{marginTop: '15px'}}>
+                        <Row>
+                            {products.data.map(product => (
+                                <Col key={product.productCode} style={{marginTop: '5px', marginBottom: '10px'}}>
+                                    <ProductItem product={product}/>
+                                </Col>
+                            ))}
+                        </Row>
+                    </div>
 
-            <PagingBar/>
+                    <PagingBar/>
+                </>
+            }
+
+
         </div>
     );
 }

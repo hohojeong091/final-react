@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Col, Modal, Row, Table } from 'react-bootstrap';
+import {Col, Container, Modal, Row, Table} from 'react-bootstrap';
 import { AdminReportAPICalls, AdminReportSuspendEndAPICalls, AdminReportDetailAPICalls } from "../../apis/AdminReportAPICalls";
 import Button from "react-bootstrap/Button";
 import { success } from "../../modules/AdminReportModules";
@@ -17,32 +17,27 @@ const AdminReports = React.memo(() => {
     const [showDetailsModal, setShowDetailsModal] = useState(false);
     const [showSuspendModal, setShowSuspendModal] = useState(false);
 
-
     useEffect(() => {
         if (success) {
             navigate('/admin/dashboard/reports');
         }
     }, [success, navigate]);
 
-    // 판매자 버튼 클릭 시
     const handleSellerButtonClick = async () => {
-        setCurrentPage(1); // 페이지 초기화
+        setCurrentPage(1);
         dispatch(AdminReportAPICalls({ currentPage: 1, role: 'SELLER' }));
     };
 
     useEffect(() => {
-        handleSellerButtonClick(); // 페이지가 처음 로드될 때 판매자 데이터를 가져옴
-    }, []); // 빈 배열을 전달하여 페이지가 처음 로드될 때만 실행되도록 설정
+        handleSellerButtonClick();
+    }, []);
 
-// 회원 버튼 클릭 시
     const handleMemberButtonClick = async () => {
-        setCurrentPage(1); // 페이지 초기화
+        setCurrentPage(1);
         dispatch(AdminReportAPICalls({ currentPage: 1, role: 'MEMBER' }));
     };
 
     const handleShowDetails = async (memberId) => {
-        // setSelectedReport(report);
-        console.log("reportcode : ", memberId)
         await dispatch(AdminReportDetailAPICalls({ memberId }));
         setShowDetailsModal(true);
     };
@@ -62,15 +57,14 @@ const AdminReports = React.memo(() => {
 
     return (
         <Row>
-            <Col xs lg="9" className="mt-5">
+            <Col xs lg="12" className="mt-5">
                 <div className="fs-4 fw-semibold border-bottom border-2 border-dark-subtle p-2">신고센터</div>
-                <div>
-                    <Button variant="primary" onClick={handleSellerButtonClick}>판매자 보기</Button>
-                    <Button variant="primary" onClick={handleMemberButtonClick}>회원 보기</Button>
-                </div>
-                <Table hover className="table px-5 mt-4">
-                    <thead
-                        className="border-2 border-bottom border-top border-secondary-subtle border-start-0 border-end-0">
+                <Container className="py-3 mt-4">
+                    <Button variant="info" className="pe-3 w-50 text-light" onClick={handleSellerButtonClick}>판매자 보기</Button>
+                    <Button variant="info" className="w-50 text-light" onClick={handleMemberButtonClick}>회원 보기</Button>
+                </Container>
+                <Table hover className="table table-container px-5 mt-4">
+                    <thead className="border-2 border-bottom border-top border-secondary-subtle border-start-0 border-end-0">
                     <tr>
                         <th>번호</th>
                         <th>아이디</th>
@@ -95,9 +89,8 @@ const AdminReports = React.memo(() => {
                             <td>{report.memberRole}</td>
                             <td>{report.reportCount}</td>
                             <td>{report.suspendedEndDate}</td>
-                            <td><Button variant="success"
-                                        onClick={() => handleShowDetails(report.memberId)}>더보기</Button></td>
-                            <td><Button variant="success" onClick={() => handleShowSuspend(report)}>정지해제</Button></td>
+                            <td><Button variant="success" onClick={() => handleShowDetails(report.memberId)}>더보기</Button></td>
+                            <td><Button variant="danger" onClick={() => handleShowSuspend(report)}>정지해제</Button></td>
                         </tr>
                     ))}
                     </tbody>
@@ -113,7 +106,7 @@ const AdminReports = React.memo(() => {
                         <Table striped bordered hover>
                             <thead>
                             <tr>
-                                <th></th>
+                                <th>#</th>
                                 <th>신고 내용</th>
                                 <th>신고 위치</th>
                                 <th>신고 날짜</th>

@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Card, Button } from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
-import {AdminNoticeAPICalls} from "../../apis/AdminNoticeAPICalls";
+import {NoticeAPICalls} from "../../apis/NoticeAPICalls";
 import {useLocation, useNavigate} from "react-router-dom";
 
-function AdminNotice() {
+function Notice() {
     const dispatch = useDispatch();
     const { notice } = useSelector(state => state.noticeReducer);
     const location = useLocation();
@@ -15,7 +15,7 @@ function AdminNotice() {
 
     useEffect(() => {
         console.log("noticecode: ",noticeCode);
-        dispatch(AdminNoticeAPICalls({ noticeCode }));
+        dispatch(NoticeAPICalls({ noticeCode }));
     }, [dispatch]);
     return (
 
@@ -45,4 +45,4 @@ function AdminNotice() {
     );
 }
 
-export default AdminNotice;
+export default Notice;

@@ -1,72 +1,89 @@
 import ReactQuill, {Quill} from 'react-quill';
 import TextEditor from "../../components/items/TextEditor";
-import React, { useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Form} from "react-bootstrap";
 import ProductOptionForm from "../../components/form/ProductOptionForm";
 import Button from "react-bootstrap/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import ProductForm from "../../components/form/ProductForm";
+import {AdminCategoryAPICalls} from "../../apis/AdminCategoryAPICalls";
+import {callProductOptionListAPI, callSellerProductRegistAPI} from "../../apis/ProductAPI";
+import {success} from "../../modules/AdminCategoryModules";
+import ProductOptionAddForm from "../../components/form/ProductOptionAddForm";
+import {registSuccess} from "../../modules/ProductModules";
+
 
 const Delta = Quill.import('delta');
 
+
+// 값 제대로 넘겨줘야함 sellablestatus 다시 넣어주고 카테고리 선택되면 setcategory 해줄 수 있는 함수 작성
+
 function ProductRegist() {
 
-    // const [range, setRange] = useState();
-    const [lastChange, setLastChange] = useState();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    let { adminCategory, success, loading, error } = useSelector(state => state.category);
+    const { saveSuccess } = useSelector(state => state.productReducer);
 
+    // db 수정 후 상품 설명 추가 필요
+    const [productForm, setProductForm] = useState({
+        productName : '',
+        sellableStatus: '',
+        categoryCode: '',
+        productDescription: '',
+        // productImageUrl: ''
+    });
+
+    const [options, setOptions] = useState([]);
+    const imageInput = useRef();
+    /* 텍스트 에디터 */
+    const [lastChange, setLastChange] = useState();
     const quillRef = useRef();
 
-    const productCategory = [
-        { id: 1, name: '카테고리1' },
-        { id: 2, name: '카테고리2' },
-    ];
 
-    const productOption = [
-        { id: 1, name: '옵션명1', price: 12000, stock: 5 },
-        { id: 2, name: '옵션명2', price: 9000, stock: 3 },
-        { id: 3, name: '옵션명3', price: 16000, stock: 2 },
-        { id: 3, name: '옵션명3', price: 16000, stock: 2 },
-        { id: 3, name: '옵션명3', price: 16000, stock: 2 },
-        { id: 3, name: '옵션명3', price: 16000, stock: 2 },
-        { id: 3, name: '마지막', price: 16000, stock: 2 },
-    ];
+    useEffect(() => {
+        if (saveSuccess === true) navigate('/seller/mystore/product');
+    }, [saveSuccess]);
+
+
+    useEffect(() => {
+        dispatch(AdminCategoryAPICalls());
+    }, [dispatch]);
+
+
+    const removeOption = (index) => {
+        setOptions(options.filter((_, i) => i !== index));
+    };
+
+    const sellableStatus = ["Y", "N"]
+
+    const submitProductRegistHandler = () => {
+        const formData = new FormData();
+
+        if (imageInput.current.files.length > 0) {
+            formData.append('productImg', imageInput.current.files[0]);
+        }
+
+        console.log('productForm: ', productForm);
+        console.log('options: ', options);
+        formData.append('productCreateRequest', new Blob([JSON.stringify(productForm)], { type : 'application/json'}));
+        formData.append('productOptionCreateRequest', new Blob([JSON.stringify(options)], { type : 'application/json'}));
+        dispatch(callSellerProductRegistAPI({ formData }));
+    }
+
+    console.log('options: ', options);
 
     return (
         <div className="product-regist-page">
 
-            <Form className="product-regist-forms">
-                <Form.Group className="product-info-form" controlId="productName">
-                    <Form.Label>상품명</Form.Label>
-                    <Form.Control type="text"/>
-                </Form.Group>
-
-                <Form.Group className="product-info-form" controlId="productStatus">
-                    <Form.Label>판매 상태</Form.Label>
-                    <Form.Select>
-                        <option value="true">판매중</option>
-                        <option value="false">구매불가</option>
-                    </Form.Select>
-                </Form.Group>
-
-                <Form.Group className="product-info-form" controlId="productCategory">
-                    <Form.Label>카테고리</Form.Label>
-                    <Form.Select>
-                        {productCategory.map(category => (
-                            <option key={category.id} value={category.id}>
-                                {category.name}
-                            </option>
-                        ))
-                        }
-                    </Form.Select>
-                </Form.Group>
-
-                <Form.Group controlId="productThumbnail">
-                    <Form.Label>대표 사진</Form.Label>
-                    <Form.Control type="file"/>
-                </Form.Group>
-            </Form>
+            <div>
+                <ProductForm sellableStatus={sellableStatus} category={adminCategory} imageInput={imageInput} productForm={productForm} setProductForm={setProductForm}/>
+            </div>
 
             <div>
                 <label style={{marginBottom: "8px"}}>옵션</label>
-                <ProductOptionForm optionInfo={productOption}/>
+                <ProductOptionAddForm options={options} setOptions={setOptions} removeOption={removeOption}/>
             </div>
 
 
@@ -75,18 +92,12 @@ function ProductRegist() {
                 ref={quillRef}
                 defaultValue={new Delta()
                     .insert('상품 상세설명')
-                    // .insert('\n', {header: 1})
-                    // .insert('Some ')
-                    // .insert('initial', {bold: true})
-                    // .insert(' ')
-                    // .insert('content', {underline: true})
                     .insert('\n')}
-                // onSelectionChange={setRange}
                 onTextChange={setLastChange}
             />
 
             <div className="submit-btn-wrapper">
-                <button className="submit-btn">상품 등록</button>
+                <button className="submit-btn" onClick={submitProductRegistHandler}>상품 등록</button>
             </div>
 
         </div>

@@ -89,33 +89,33 @@ function NavBar() {
                 </Col>
 
                 <Col>
-                <NavDropdown title="여은파님" id="navbarScrollingDropdown"
-                             className="mx-0 col-9 ">
-                    {isAdmin() &&
+                    <NavDropdown title="여은파님" id="navbarScrollingDropdown"
+                                 className="mx-0 col-9 ">
+                        {isAdmin() &&
+                            <NavDropdown.Item
+                                onClick={() => navigate(`/admin/dashboard/main`)}>
+                                관리자페이지
+                            </NavDropdown.Item>
+                        }
+                        {isSeller() &&
+                            <NavDropdown.Item
+                                onClick={() => navigate(`/seller/mystore/main`)}>
+                                마이스토어
+                            </NavDropdown.Item>
+                        }
+                        {(!isAdmin() && !isSeller()) &&
+                            <NavDropdown.Item
+                                onClick={() => navigate(`/members/mypage`)}>
+                                마이페이지
+                            </NavDropdown.Item>
+                        }
+                        <NavDropdown.Divider />
                         <NavDropdown.Item
-                            onClick={() => navigate(`/admin/dashboard/main`)}>
-                            관리자페이지
+                            type="button"
+                            onClick={() => dispatch(callLogoutAPI())}>
+                            로그아웃
                         </NavDropdown.Item>
-                    }
-                    {isSeller() &&
-                        <NavDropdown.Item
-                            onClick={() => navigate(`/seller/mystore/main`)}>
-                            마이스토어
-                        </NavDropdown.Item>
-                    }
-                    {(!isAdmin() && !isSeller()) &&
-                        <NavDropdown.Item
-                            onClick={() => navigate(`/members/mypage`)}>
-                            마이페이지
-                        </NavDropdown.Item>
-                    }
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item
-                        type="button"
-                        onClick={() => dispatch(callLogoutAPI())}>
-                        로그아웃
-                    </NavDropdown.Item>
-                </NavDropdown>
+                    </NavDropdown>
                 </Col>
             </Row>
         )

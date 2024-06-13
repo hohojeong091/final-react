@@ -29,6 +29,14 @@ function ProductEdit() {
         { id: 3, name: '마지막', price: 16000, stock: 2 },
     ];
 
+    /* 옵션 불러오기 */
+
+    // const { productOption } = useSelector(state => state.option);
+    //
+    // useEffect(() => {
+    //     dispatch(callProductOptionListAPI({productCode}));
+    // }, [productCode]);
+
     return (
         <div className="product-regist-page">
 
