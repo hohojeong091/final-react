@@ -8,6 +8,10 @@ function InquiryListItem({inquiry: {inquiryCode, inquiryWriteDate, inquiryTitle,
 
     const navigate = useNavigate();
 
+    const onClickViewDetailHandler = () => {
+    navigate(`/inquiry/detail/${inquiryCode}`)
+    }
+
     return (
 
 
@@ -27,7 +31,8 @@ function InquiryListItem({inquiry: {inquiryCode, inquiryWriteDate, inquiryTitle,
                     </tr>
                     </thead>
                     <tbody>
-                    <tr onClick={() => navigate(`/inquiry/${inquiryCode}`)}>
+                    <tr onClick={onClickViewDetailHandler}>
+                        {/*줄의 어디를 눌러도 상세보기 페이지로 넘어갈 수 있게 */}
                         <td key={inquiryCode} className="text-center">{inquiryCode}</td>
                         <td key={inquiryWriteDate} className="text-center">{inquiryWriteDate}</td>
                         <td key={inquiryTitle} className="text-center">{inquiryTitle}</td>
