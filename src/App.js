@@ -49,6 +49,7 @@ import InquiryRegist from "./pages/Inquiry/InquiryRegist";
 import AdminMain from "./pages/admin/AdminMain";
 import Reviews from "./pages/Reviews";
 import ReviewDetail from "./pages/ReviewDetail";
+import InquiryDetailView from "./pages/Inquiry/InquiryDetailView";
 
 
 function App() {
@@ -105,7 +106,8 @@ function App() {
                                 <Route path="inquiry" >
                                     <Route index element={<InquiryMain/>}/>
                                     <Route path="regist" element={<InquiryRegist/>}/>
-                                    <Route path="view" element={<InquiryListView/>}/>
+                                    {/*<Route path="view" element={<InquiryListView/>}/>*/}
+                                    <Route path="detail" element={<InquiryDetailView/>}/>
                                 </Route>
 
 

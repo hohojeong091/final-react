@@ -27,7 +27,7 @@ function InquiryListItem({inquiry: {inquiryCode, inquiryWriteDate, inquiryTitle,
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr onClick={() => navigate(`/inquiry/${inquiryCode}`)}>
                         <td key={inquiryCode} className="text-center">{inquiryCode}</td>
                         <td key={inquiryWriteDate} className="text-center">{inquiryWriteDate}</td>
                         <td key={inquiryTitle} className="text-center">{inquiryTitle}</td>
