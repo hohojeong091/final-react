@@ -5,7 +5,7 @@ import {callInquiryListAPI, callMemberInquiryRegistAPI} from "../../apis/Inquiry
 import InquiryForm from "../../components/form/InquiryForm";
 import {Col, Row} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import InquiryMain from "./InquiryMain";
+
 
 function InquiryRegist({data}) {
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ function InquiryRegist({data}) {
     const {success} = useSelector(state => state.inquiryReducer);
 
     useEffect(() => {
-        if(success === true) navigate('members/mypage/inquiry/view')
+        if(success === true) navigate('/inquiry/view')
     }, [success]);
 
 
