@@ -1,11 +1,11 @@
-import data from "bootstrap/js/src/dom/data";
+
 
 function InquiryDetailView ({inquiry : {inquiryCode, inquiryWriteDate, inquiryTitle, inquiryDetail, inquiryReplyStatus}}) {
 
     return (
 
         <>
-            <>
+
 
 
                    문의 코드 <div key={inquiryCode} className="text-center">{inquiryCode}</div>
@@ -14,7 +14,7 @@ function InquiryDetailView ({inquiry : {inquiryCode, inquiryWriteDate, inquiryTi
                    문의 내용 <div key={inquiryDetail} className="text-center">{inquiryDetail}</div>
                    문의 처리 상태<div key={inquiryReplyStatus} className="text-center">{inquiryReplyStatus}</div>
 
-            </>
+
         </>
     );
 }
